@@ -54,7 +54,19 @@ namespace PetShopMenu
                         _petService.DeletePet(idToDelete);
                         break;
                     case 4:
-                        
+                        var idForEdit = FindPetId();
+                        var petToEdit = _petService.FindPetById(idForEdit);
+                        Console.WriteLine("Updating " + petToEdit.PetName + " " + petToEdit.PetType + " " + petToEdit.Birthdate + " " + petToEdit.SoldDate + " " + petToEdit.Color + " " + petToEdit.PreviousOwner + " " + petToEdit.Price);
+                        var newName = AskQuestion("Pet name: ");
+                        var newType = AskQuestion("Pet type: ");
+                        var newBirthDate = AskQuestion("Birhtdate: ");
+                        var newSoldDate = AskQuestion("Sold Date: ");
+                        var newColor = AskQuestion("Pet Color: ");
+                        var newPreviousOwner = AskQuestion("Previous Owner: ");
+                        var newPrice = AskQuestion("Price: ");
+                        _petService.UpdatePet(new Pet){
+
+                        }
                         break;
                     case 5:
                         break;

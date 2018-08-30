@@ -12,5 +12,6 @@ namespace PetShopMenu.Core.DomainService
         Pet Create(Pet pet);
 
         Pet Delete(int id);
+        Pet ReadById(int id);
     }
 }

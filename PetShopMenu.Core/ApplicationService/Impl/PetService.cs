@@ -26,6 +26,11 @@ namespace PetShopMenu.Core.ApplicationService.Impl
             return _petRepo.Delete(id);
         }
 
+        public Pet FindPetById(int id)
+        {
+            return _petRepo.ReadById(id);
+        }
+
         public List<Pet> GetPets()
         {
             return _petRepo.ReadPets().ToList();
