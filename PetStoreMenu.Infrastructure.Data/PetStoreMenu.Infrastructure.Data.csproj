@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PetShopMenu.Core.Entity\PetShopMenu.Core.Entity.csproj" />
+    <ProjectReference Include="..\PetShopMenu.Core\PetShopMenu.Core.csproj" />
+  </ItemGroup>
+
+</Project>
