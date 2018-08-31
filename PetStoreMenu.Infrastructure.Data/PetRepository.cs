@@ -28,6 +28,18 @@ namespace PetStoreMenu.Infrastructure.Data
             return null;
         }
 
+        public Pet FindByType(string type)
+        {
+            foreach (var petByType in FakeDB.Pets)
+            {
+                if(petByType.PetType == type)
+                {
+                    return petByType;
+                }
+            }
+            return null;
+        }
+
         public Pet Delete(int id)
         {
             var petFound = this.ReadById(id);
@@ -41,7 +53,7 @@ namespace PetStoreMenu.Infrastructure.Data
 
         public IEnumerable<Pet> ReadPets()
         {
-            FakeDB.InitData();
+            //FakeDB.InitData();
             return FakeDB.Pets;
         }
 
@@ -58,6 +70,16 @@ namespace PetStoreMenu.Infrastructure.Data
                 petFromDB.PreviousOwner = petUpdate.PreviousOwner;
                 petFromDB.Price = petUpdate.Price;
                 return petFromDB;
+            }
+            return null;
+        }
+
+        public IEnumerable<Pet> ReadByType(string type)
+        {
+            var typeFound = this.FindByType(type);
+            if(typeFound != null)
+            {
+                return FakeDB.Pets;
             }
             return null;
         }

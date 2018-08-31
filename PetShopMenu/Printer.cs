@@ -74,12 +74,15 @@ namespace PetShopMenu
                             Color = newColor,
                             PreviousOwner = newPreviousOwner,
                             Price = Convert.ToDouble(newPrice)
-                        });
-
-                        
-
+                        });                        
                         break;
                     case 5:
+                        var typeToFind = FindPetType();
+                        var result = _petService.FindPetByType(typeToFind);
+                        foreach (var foundPets in result)
+                        {
+                            Console.WriteLine(foundPets.PetName);
+                        }
                         break;
                     case 6:
                         break;
@@ -92,6 +95,14 @@ namespace PetShopMenu
                 Console.Clear();
             }
             AskQuestion("Press enter to exit");
+        }
+
+        private string FindPetType()
+        {
+            Console.WriteLine("Insert Pet Type: ");
+            string type;
+            type = Console.ReadLine();
+            return type;
         }
 
         int FindPetId()

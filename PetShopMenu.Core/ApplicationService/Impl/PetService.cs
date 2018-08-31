@@ -31,6 +31,14 @@ namespace PetShopMenu.Core.ApplicationService.Impl
             return _petRepo.ReadById(id);
         }
 
+        public List<Pet> FindPetByType(string type)
+        {
+            var list = _petRepo.ReadPets();
+            var question = list.Where(pet => pet.PetType.Equals(type));
+            question.OrderBy(pet => pet.PetType);
+            return question.ToList();
+        }
+
         public List<Pet> GetPets()
         {
             return _petRepo.ReadPets().ToList();

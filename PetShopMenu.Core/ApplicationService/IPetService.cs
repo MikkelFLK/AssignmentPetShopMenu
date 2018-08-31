@@ -22,5 +22,7 @@ namespace PetShopMenu.Core.ApplicationService
 
         Pet UpdatePet(Pet petUpdate);
 
+        List<Pet> FindPetByType(string type);
+
     }
 }
