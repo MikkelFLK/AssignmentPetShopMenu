@@ -24,5 +24,9 @@ namespace PetShopMenu.Core.ApplicationService
 
         List<Pet> FindPetByType(string type);
 
+        List<Pet> SortByPrice();
+
+        List<Pet> Get5CheapestPets();
+
     }
 }

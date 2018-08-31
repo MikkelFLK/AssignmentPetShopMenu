@@ -53,7 +53,6 @@ namespace PetStoreMenu.Infrastructure.Data
 
         public IEnumerable<Pet> ReadPets()
         {
-            //FakeDB.InitData();
             return FakeDB.Pets;
         }
 
@@ -82,6 +81,11 @@ namespace PetStoreMenu.Infrastructure.Data
                 return FakeDB.Pets;
             }
             return null;
+        }
+
+        public IEnumerable<Pet> ReadByPrice()
+        {
+            return FakeDB.Pets;
         }
     }
 }

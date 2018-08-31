@@ -85,8 +85,11 @@ namespace PetShopMenu
                         }
                         break;
                     case 6:
+                        var petByPrice = _petService.SortByPrice();
+                        PrintPets(petByPrice);
                         break;
                     case 7:
+                        ShowCheapestPets();
                         break;
                     default:
                         break;
@@ -95,6 +98,15 @@ namespace PetShopMenu
                 Console.Clear();
             }
             AskQuestion("Press enter to exit");
+        }
+
+        private void ShowCheapestPets()
+        {
+            var list = _petService.Get5CheapestPets();
+            foreach (var pet in list)
+            {
+                Console.WriteLine("Pet name: {0} Price: {1:N}", pet.PetName, pet.Price);
+            }
         }
 
         private string FindPetType()

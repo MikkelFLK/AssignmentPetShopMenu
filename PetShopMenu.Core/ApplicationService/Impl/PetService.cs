@@ -39,6 +39,11 @@ namespace PetShopMenu.Core.ApplicationService.Impl
             return question.ToList();
         }
 
+        public List<Pet> Get5CheapestPets()
+        {
+            return _petRepo.ReadPets().OrderBy(pet => pet.Price).Take(5).ToList();
+        }
+
         public List<Pet> GetPets()
         {
             return _petRepo.ReadPets().ToList();
@@ -57,6 +62,14 @@ namespace PetShopMenu.Core.ApplicationService.Impl
                 Price = price
             };
             return pet;
+        }
+
+        public List<Pet> SortByPrice()
+        {
+            var list = _petRepo.ReadPets();
+            var question = list.OrderBy(pet => pet.Price);
+            return question.ToList();
+ 
         }
 
         public Pet UpdatePet(Pet petUpdate)

@@ -17,5 +17,7 @@ namespace PetShopMenu.Core.DomainService
         Pet Update(Pet petUpdate);
 
         IEnumerable<Pet> ReadByType(string type);
+
+        IEnumerable<Pet> ReadByPrice();
     }
 }
