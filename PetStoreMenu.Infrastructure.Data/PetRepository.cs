@@ -44,5 +44,22 @@ namespace PetStoreMenu.Infrastructure.Data
             FakeDB.InitData();
             return FakeDB.Pets;
         }
+
+        public Pet Update(Pet petUpdate)
+        {
+            var petFromDB = this.ReadById(petUpdate.PetId);
+            if(petFromDB != null)
+            {
+                petFromDB.PetName = petUpdate.PetName;
+                petFromDB.PetType = petUpdate.PetType;
+                petFromDB.Birthdate = petUpdate.Birthdate;
+                petFromDB.SoldDate = petUpdate.SoldDate;
+                petFromDB.Color = petUpdate.Color;
+                petFromDB.PreviousOwner = petUpdate.PreviousOwner;
+                petFromDB.Price = petUpdate.Price;
+                return petFromDB;
+            }
+            return null;
+        }
     }
 }

@@ -64,9 +64,20 @@ namespace PetShopMenu
                         var newColor = AskQuestion("Pet Color: ");
                         var newPreviousOwner = AskQuestion("Previous Owner: ");
                         var newPrice = AskQuestion("Price: ");
-                        _petService.UpdatePet(new Pet){
+                        _petService.UpdatePet(new Pet()
+                        {
+                            PetId = idForEdit,
+                            PetName = newName,
+                            PetType = newType,
+                            Birthdate = Convert.ToDateTime(newBirthDate),
+                            SoldDate = Convert.ToDateTime(newSoldDate),
+                            Color = newColor,
+                            PreviousOwner = newPreviousOwner,
+                            Price = Convert.ToDouble(newPrice)
+                        });
 
-                        }
+                        
+
                         break;
                     case 5:
                         break;

@@ -50,5 +50,18 @@ namespace PetShopMenu.Core.ApplicationService.Impl
             };
             return pet;
         }
+
+        public Pet UpdatePet(Pet petUpdate)
+        {
+            var pet = FindPetById(petUpdate.PetId);
+            pet.PetName = petUpdate.PetName;
+            pet.PetType = petUpdate.PetType;
+            pet.Birthdate = petUpdate.Birthdate;
+            pet.SoldDate = petUpdate.SoldDate;
+            pet.Color = petUpdate.Color;
+            pet.PreviousOwner = petUpdate.PreviousOwner;
+            pet.Price = petUpdate.Price;
+            return pet;
+        }
     }
 }
