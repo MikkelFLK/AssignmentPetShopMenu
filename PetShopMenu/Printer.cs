@@ -9,10 +9,12 @@ namespace PetShopMenu
     public class Printer: IPrinter
     {
         readonly IPetService _petService;
+        readonly IOwnerService _ownerService;
  
-        public Printer(IPetService petService)
+        public Printer(IPetService petService,IOwnerService ownerService)
         {
             _petService = petService;
+            _ownerService = ownerService;
         }
 
         public void PrintUI()
@@ -26,11 +28,21 @@ namespace PetShopMenu
                 "Search Pets by Type",//5
                 "Sort Pets by Price",//6
                 "Get 5 cheapest Pets",//7
-                "Exit"//8
+                "OwnerMenu",//8
+                "Exit"//9
+            };
+
+            string[] ownerMenuItems =
+            {
+                "List all Owners",//1
+                "Create new Owner",//2
+                "Delete Owner",//3
+                "Update a Owner",//4
+                "Return to Main Menu"//5
             };
 
             var selection = PrintMenu(menuItems);
-            while (selection != 8)
+            while (selection != 9)
             {
                 switch (selection)
                 {
@@ -91,14 +103,56 @@ namespace PetShopMenu
                     case 7:
                         ShowCheapestPets();
                         break;
+                    case 8:
+                        var ownerSelection = PrintOwnerMenu(ownerMenuItems);
+                        while (ownerSelection != 5)
+                        {
+                            switch (ownerSelection)
+                            {
+                                case 1:
+                                    var owners = _ownerService.GetOwners();
+                                    PrintOwners(owners);
+                                    break;
+                                case 2:
+                                    var firstName = AskQuestion("First name: ");
+                                    var lastName = AskQuestion("Last name: ");
+                                    var owner = _ownerService.NewOwner(firstName, lastName);
+                                    _ownerService.CreateOwner(owner);
+                                    break;
+                                case 3:
+                                    var ownerIdForEdit = FindOwnerId();
+                                    var ownerToEdit = _ownerService.FindOwnerById(ownerIdForEdit);
+                                    Console.WriteLine("Updating " + ownerToEdit.FirstName + " " + ownerToEdit.LastName);
+                                    var newFirstname = AskQuestion("Firstname: ");
+                                    var newLastname = AskQuestion("Lastname: ");
+                                    _ownerService.UpdateOwner(new Owner()
+                                    {
+                                        OwnerId = ownerIdForEdit,
+                                        FirstName = newFirstname,
+                                        LastName = newLastname
+                                    });
+                                    break;
+                                case 4:
+                                    var ownerIdToDelete = FindOwnerId();
+                                    _ownerService.DeleteOwner(ownerIdToDelete);
+                                    break;
+                                default:
+                                    break;
+                            }
+                            ownerSelection = PrintOwnerMenu(ownerMenuItems);
+                            Console.Clear();
+                        }
+                        break;
                     default:
                         break;
                 }
                 selection = PrintMenu(menuItems);
                 Console.Clear();
-            }
+            } 
             AskQuestion("Press enter to exit");
         }
+
+
 
         private void ShowCheapestPets()
         {
@@ -128,6 +182,16 @@ namespace PetShopMenu
             return id;
         }
 
+        int FindOwnerId()
+        {
+            int id;
+            while(!int.TryParse(Console.ReadLine(), out id))
+            {
+                Console.WriteLine("Please insert number");
+            }
+            return id;
+        }
+
         private void PrintPets(List<Pet> pets)
         {
             Console.WriteLine("\nList of Pets");
@@ -137,6 +201,14 @@ namespace PetShopMenu
                     $"Type: {Pet.PetType} Birthdate: {Pet.Birthdate} " +
                     $"SoldDate: {Pet.SoldDate} Color: {Pet.Color} " +
                     $"Previous Owner {Pet.PreviousOwner} Price {Pet.Price}");
+            }
+        }
+        private void PrintOwners(List<Owner> owners)
+        {
+            Console.WriteLine("\nList of Owners");
+            foreach (var Owner in owners)
+            {
+                Console.WriteLine($"Id: {Owner.OwnerId} Name: {Owner.FirstName} {Owner.LastName}");
             }
         }
 
@@ -149,7 +221,22 @@ namespace PetShopMenu
                 Console.WriteLine((i + 1) + ":" + menuItems[i]);
             }
             int selection;
-            while (!int.TryParse(Console.ReadLine(), out selection) || selection < 1 || selection > 8)
+            while (!int.TryParse(Console.ReadLine(), out selection) || selection < 1 || selection > 9)
+            {
+                Console.WriteLine("\nPlease input a valid command");
+            }
+            return selection;
+        }
+        int PrintOwnerMenu(string[] ownerMenuItems)
+        {
+            Console.WriteLine("\nPetShop Owner Menu\n");
+            Console.WriteLine("Please select a command\n");
+            for (int i = 0; i < ownerMenuItems.Length; i++)
+            {
+                Console.WriteLine((i + 1) + ":" + ownerMenuItems[i]);
+            }
+            int selection;
+            while (!int.TryParse(Console.ReadLine(), out selection) || selection < 1 || selection > 5)
             {
                 Console.WriteLine("\nPlease input a valid command");
             }

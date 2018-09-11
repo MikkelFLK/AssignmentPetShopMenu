@@ -8,9 +8,24 @@ namespace PetStoreMenu.Infrastructure.Data
     public static class FakeDB
     {
         public static List<Pet> Pets = new List<Pet>();
-
+        public static List<Owner> Owners = new List<Owner>();
         public static void InitData()
         {
+            var owner1 = new Owner()
+            {
+                OwnerId = 1,
+                FirstName = "Garry",
+                LastName = "Petowner"
+            };
+            Owners.Add(owner1);
+            var owner2 = new Owner()
+            {
+                OwnerId = 2,
+                FirstName = "Jill",
+                LastName = "Crazycatlady"
+            };
+            Owners.Add(owner2);
+
             var pet1 = new Pet()
             {
                 PetId = 1,
