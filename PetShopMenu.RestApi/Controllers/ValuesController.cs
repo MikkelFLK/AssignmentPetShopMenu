@@ -28,28 +28,56 @@ namespace PetShopMenu.RestApi.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public ActionResult<Pet> Get(int id)
         {
-            return "value";
+            if (id < 1) return BadRequest("Id must be greater than 0");
+            return _petService.FindPetById(id);
         }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult<Pet> Post([FromBody] Pet pet)
         {
+            if (string.IsNullOrEmpty(pet.PetName))
+            {
+                return BadRequest("Input pet name");
+            }
+            if (string.IsNullOrEmpty(pet.PetType))
+            {
+                return BadRequest("Input pet type");
+            }
+            if (string.IsNullOrEmpty(pet.Color))
+            {
+                return BadRequest("Input color");
+            }
+            if (string.IsNullOrEmpty(pet.PreviousOwner))
+            {
+                return BadRequest("Input previous owner");
+            }
+            return _petService.CreatePet(pet);
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public ActionResult<Pet> Put(int id, [FromBody] Pet pet)
         {
-
+            if (id < 1 || id != pet.PetId)
+            {
+                return BadRequest("Parameter Id and customer ID must be the same");
+            }
+            return Ok(_petService.UpdatePet(pet));
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult<Pet> Delete(int id)
         {
+            var pet = _petService.DeletePet(id);
+            if (pet == null)
+            {
+                return StatusCode(404, "Did not find Pet with ID " + id);
+            }
+            return Ok($"Pet with Id: {id} is Deleted");
         }
     }
 }
