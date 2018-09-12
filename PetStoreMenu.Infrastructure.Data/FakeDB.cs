@@ -35,7 +35,8 @@ namespace PetStoreMenu.Infrastructure.Data
                 SoldDate = new DateTime(1200, 12, 12),
                 Color = "Grey",
                 PreviousOwner = "Bob",
-                Price = 9.99
+                Price = 9.99,
+                Owner = new Owner() {OwnerId = 1}
             };
             Pets.Add(pet1);
 
@@ -48,7 +49,8 @@ namespace PetStoreMenu.Infrastructure.Data
                 SoldDate = new DateTime(1200, 12, 12),
                 Color = "Grey",
                 PreviousOwner = "Bob",
-                Price = 45.99
+                Price = 45.99,
+                Owner = new Owner() { OwnerId = 1 }
             };
             Pets.Add(pet2);
 
@@ -61,7 +63,8 @@ namespace PetStoreMenu.Infrastructure.Data
                 SoldDate = new DateTime(1200, 12, 12),
                 Color = "Grey",
                 PreviousOwner = "Bob",
-                Price = 99.99
+                Price = 99.99,
+                Owner = new Owner() { OwnerId = 2 }
             };
             Pets.Add(pet3);
 
@@ -74,7 +77,8 @@ namespace PetStoreMenu.Infrastructure.Data
                 SoldDate = new DateTime(1200, 12, 12),
                 Color = "Grey",
                 PreviousOwner = "Bob",
-                Price = 3.99
+                Price = 3.99,
+                Owner = new Owner() { OwnerId = 2 }
             };
             Pets.Add(pet4);
 
@@ -87,7 +91,8 @@ namespace PetStoreMenu.Infrastructure.Data
                 SoldDate = new DateTime(1200, 12, 12),
                 Color = "Grey",
                 PreviousOwner = "Bob",
-                Price = 88.99
+                Price = 88.99,
+                Owner = new Owner() { OwnerId = 1 }
             };
             Pets.Add(pet5);
 
@@ -100,7 +105,8 @@ namespace PetStoreMenu.Infrastructure.Data
                 SoldDate = new DateTime(1200, 12, 12),
                 Color = "Grey",
                 PreviousOwner = "Bob",
-                Price = 900.99
+                Price = 900.99,
+                Owner = new Owner() { OwnerId = 2 }
             };
             Pets.Add(pet6);
         }

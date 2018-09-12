@@ -14,7 +14,8 @@ namespace PetShopMenu.Core.ApplicationService
                    DateTime soldDate,
                    string color,
                    string previousOwner,
-                   double price);
+                   double price,
+                   int ownerId);
         Pet CreatePet(Pet pet);
 
         Pet DeletePet(int id);

@@ -8,7 +8,7 @@ namespace PetStoreMenu.Infrastructure.Data
 {
     public class PetRepository : IPetRepository
     {
-        static int id = 1;
+        static int id = FakeDB.Pets.Count;
         public Pet Create(Pet pet)
         {
             pet.PetId = id++;

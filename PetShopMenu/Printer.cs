@@ -58,8 +58,8 @@ namespace PetShopMenu
                         var color = AskQuestion("Pet Color: ");
                         var previousOwner = AskQuestion("Previous owner: ");
                         var price = AskQuestion("Pet Price: ");
-                        var pet = _petService.NewPet(petName, type, Convert.ToDateTime(birthDate), Convert.ToDateTime(soldDate), color, previousOwner, Convert.ToDouble(price));
-                        _petService.CreatePet(pet);
+                        //var pet = _petService.NewPet(petName, type, Convert.ToDateTime(birthDate), Convert.ToDateTime(soldDate), color, previousOwner, Convert.ToDouble(price));
+                        //_petService.CreatePet(pet);
                         break;
                     case 3:
                         var idToDelete = FindPetId();
