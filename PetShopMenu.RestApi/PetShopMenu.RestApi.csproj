@@ -17,7 +17,6 @@
   <ItemGroup>
     <ProjectReference Include="..\PetShopMenu.Core.Entity\PetShopMenu.Core.Entity.csproj" />
     <ProjectReference Include="..\PetShopMenu.Core\PetShopMenu.Core.csproj" />
-    <ProjectReference Include="..\PetShopMenu\PetShopMenu.csproj" />
     <ProjectReference Include="..\PetStoreMenu.Infrastrucure.DatawDB\PetStoreMenu.Infrastrucure.DatawDB.csproj" />
   </ItemGroup>
 

@@ -1,4 +1,5 @@
-﻿using PetShopMenu.Core.DomainService;
+﻿using Microsoft.EntityFrameworkCore;
+using PetShopMenu.Core.DomainService;
 using PetShopMenu.Core.Entity;
 using System;
 using System.Collections.Generic;
@@ -24,12 +25,14 @@ namespace PetStoreMenu.Infrastrucure.DatawDB.Repositories
 
         public Pet Delete(int id)
         {
-            throw new NotImplementedException();
+            var petRemoved = _ctx.Remove(new Pet { PetId = id }).Entity;
+            _ctx.SaveChanges();
+            return petRemoved;
         }
 
         public Pet ReadById(int id)
         {
-            return _ctx.Pets.FirstOrDefault(p => p.PetId == id);
+            return _ctx.Pets.Include(p => p.Owner).FirstOrDefault(p => p.PetId == id);
         }
 
         public IEnumerable<Pet> ReadByPrice()

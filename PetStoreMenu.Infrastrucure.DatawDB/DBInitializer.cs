@@ -12,7 +12,19 @@ namespace PetStoreMenu.Infrastrucure.DatawDB
             ctx.Database.EnsureDeleted();
             ctx.Database.EnsureCreated();
 
-            var pet1 = ctx.Pets.Add(new Pet()
+
+            var own1 = ctx.Owners.Add(new Owner()
+            {
+                FirstName = "Bob",
+                LastName = "Johnson"
+            }).Entity;
+            var own2 = ctx.Owners.Add(new Owner()
+            {
+                FirstName = "Sam",
+                LastName = "Something"
+            }).Entity;
+
+            ctx.Pets.Add(new Pet()
             {
                 PetName = "Fred",
                 PetType = "Dog",
@@ -21,9 +33,9 @@ namespace PetStoreMenu.Infrastrucure.DatawDB
                 Color = "Grey",
                 PreviousOwner = "Bob",
                 Price = 9.99,
-                Owner = new Owner() { OwnerId = 1 }
+                Owner = own1
             });
-            var pet2 = ctx.Pets.Add(new Pet()
+            ctx.Pets.Add(new Pet()
             {
                 PetName = "Truck",
                 PetType = "Duck",
@@ -32,9 +44,9 @@ namespace PetStoreMenu.Infrastrucure.DatawDB
                 Color = "Red",
                 PreviousOwner = "Bob",
                 Price = 99.50,
-                Owner = new Owner() { OwnerId = 1 }
+                Owner = own1
             });
-            var pet3 = ctx.Pets.Add(new Pet()
+            ctx.Pets.Add(new Pet()
             {
                 PetName = "Liam",
                 PetType = "Cat",
@@ -43,18 +55,7 @@ namespace PetStoreMenu.Infrastrucure.DatawDB
                 Color = "Cyan",
                 PreviousOwner = "Clint",
                 Price = 999.99,
-                Owner = new Owner() { OwnerId = 2 }
-            });
-
-            var own1 = ctx.Owners.Add(new Owner()
-            {
-                FirstName = "Bob",
-                LastName = "Johnson"
-            });
-            var own2 = ctx.Owners.Add(new Owner()
-            {
-                FirstName = "Sam",
-                LastName = "Something"
+                Owner = own2
             });
 
             ctx.SaveChanges();

@@ -31,7 +31,7 @@ namespace PetShopMenu.Core.ApplicationService.Impl
         public Pet FindPetById(int id)
         {
             var pet = _petRepo.ReadById(id);
-            pet.Owner = _ownerRepo.ReadById(pet.Owner.OwnerId);
+            
             return pet;
             
         }

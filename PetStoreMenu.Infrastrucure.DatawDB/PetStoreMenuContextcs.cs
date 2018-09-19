@@ -14,6 +14,11 @@ namespace PetStoreMenu.Infrastrucure.DatawDB
 
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Owner>().HasMany(o => o.Pets).WithOne(p => p.Owner).OnDelete(DeleteBehavior.SetNull);
+        }
+
         public DbSet<Pet> Pets { get; set; }
         public DbSet<Owner> Owners { get; set; }
 
