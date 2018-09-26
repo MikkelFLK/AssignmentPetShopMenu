@@ -55,6 +55,15 @@ namespace PetShopMenu.RestApi
                     DBInitializer.SeedDB(ctx);
                 }
             }
+            else
+            {
+                using (var scope = app.ApplicationServices.CreateScope())
+                {
+                    var ctx = scope.ServiceProvider.GetService<PetStoreMenuContextcs>();
+                    ctx.Database.EnsureCreated();
+                }
+                app.UseHsts();
+            }
 
             app.UseMvc();
         }
