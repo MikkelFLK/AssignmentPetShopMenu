@@ -74,7 +74,7 @@ namespace PetStoreMenu.Infrastrucure.DatawDB.Repositories
             {
                 return _ctx.Pets;
             }
-            return _ctx.Pets.Skip((filter.CurrentPage - 1)
+            return _ctx.Pets.Skip((filter.CurrentPage - 1) * filter.ItemPrPage).Take(filter.ItemPrPage);
         }
 
         public Pet Update(Pet petUpdate)
