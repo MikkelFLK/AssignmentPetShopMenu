@@ -57,7 +57,7 @@ namespace PetShopMenu.RestApi.Controllers
             return _petService.CreatePet(pet);
         }
 
-        // PUT api/values/5
+        // PUT api/values/5 --Update
         [HttpPut("{id}")]
         public ActionResult<Pet> Put(int id, [FromBody] Pet pet)
         {

@@ -43,7 +43,10 @@ namespace PetStoreMenu.Infrastrucure.DatawDB.Repositories
 
         public Owner Update(Owner owner)
         {
-            throw new NotImplementedException();
+            _ctx.Attach(owner).State = EntityState.Modified;
+            //_ctx.Entry(owner).Reference(o => o.Pets).IsModified = true;
+            _ctx.SaveChanges();
+            return owner;
         }
     }
 }

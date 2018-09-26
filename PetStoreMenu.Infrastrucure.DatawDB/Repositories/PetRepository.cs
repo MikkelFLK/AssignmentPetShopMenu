@@ -18,6 +18,10 @@ namespace PetStoreMenu.Infrastrucure.DatawDB.Repositories
 
         public Pet Create(Pet pet)
         {
+            if (pet.Owner != null && _ctx.ChangeTracker.Entries<Owner>().FirstOrDefault(ce => ce.Entity.OwnerId == pet.Owner.OwnerId)== null)
+            {
+                _ctx.Attach(pet.Owner);
+            }
             var newPet = _ctx.Pets.Add(pet).Entity;
             _ctx.SaveChanges();
             return newPet;
@@ -52,7 +56,11 @@ namespace PetStoreMenu.Infrastrucure.DatawDB.Repositories
 
         public Pet Update(Pet petUpdate)
         {
-            throw new NotImplementedException();
+            _ctx.Attach(petUpdate).State = EntityState.Modified;
+            _ctx.Entry(petUpdate).Reference(p => p.Owner).IsModified = true;
+            _ctx.SaveChanges();
+
+            return petUpdate;
         }
     }
 }

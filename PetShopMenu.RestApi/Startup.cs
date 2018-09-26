@@ -24,7 +24,6 @@ namespace PetShopMenu.RestApi
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            //FakeDB.InitData();
         }
 
         public IConfiguration Configuration { get; }
