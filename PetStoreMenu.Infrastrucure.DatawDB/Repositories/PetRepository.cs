@@ -16,6 +16,11 @@ namespace PetStoreMenu.Infrastrucure.DatawDB.Repositories
             _ctx = ctx;
         }
 
+        public int Count()
+        {
+            return _ctx.Pets.Count();
+        }
+
         public Pet Create(Pet pet)
         {
             if (pet.Owner != null && _ctx.ChangeTracker.Entries<Owner>().FirstOrDefault(ce => ce.Entity.OwnerId == pet.Owner.OwnerId)== null)
@@ -49,9 +54,27 @@ namespace PetStoreMenu.Infrastrucure.DatawDB.Repositories
             throw new NotImplementedException();
         }
 
+        public IEnumerable<Pet> ReadPets(Filter filter)
+        {
+            if(filter == null)
+            {
+                return _ctx.Pets;
+            }
+            return _ctx.Pets.Skip((filter.CurrentPage - 1) * filter.ItemPrPage).Take(filter.ItemPrPage);
+        }
+
         public IEnumerable<Pet> ReadPets()
         {
-            return _ctx.Pets;
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Pet> ReadPetsFiltered(Filter filter)
+        {
+            if (filter == null)
+            {
+                return _ctx.Pets;
+            }
+            return _ctx.Pets.Skip((filter.CurrentPage - 1)
         }
 
         public Pet Update(Pet petUpdate)

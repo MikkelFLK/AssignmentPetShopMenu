@@ -28,6 +28,7 @@ namespace PetShopMenu.Core.ApplicationService
         List<Pet> SortByPrice();
 
         List<Pet> Get5CheapestPets();
+        List<Pet> GetFilteredOrders(Filter filter);
 
     }
 }

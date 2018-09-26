@@ -8,6 +8,8 @@ namespace PetShopMenu.Core.DomainService
     public interface IPetRepository
     {
         IEnumerable<Pet> ReadPets();
+        IEnumerable<Pet> ReadPetsFiltered(Filter filter);
+
 
         Pet Create(Pet pet);
 
@@ -19,5 +21,6 @@ namespace PetShopMenu.Core.DomainService
         IEnumerable<Pet> ReadByType(string type);
 
         IEnumerable<Pet> ReadByPrice();
+        int Count();
     }
 }
