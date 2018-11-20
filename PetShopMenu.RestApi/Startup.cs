@@ -83,7 +83,6 @@ namespace PetShopMenu.RestApi
                 {
                     var ctx = scope.ServiceProvider.GetService<PetStoreMenuContextcs>();
                     ctx.Database.EnsureCreated();
-                    DBInitializer.SeedDB(ctx);
                 }
                 app.UseHsts();
             }
