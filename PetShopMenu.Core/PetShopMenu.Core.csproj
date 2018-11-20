@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.IdentityModel" Version="6.1.7600.16394" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\PetShopMenu.Core.Entity\PetShopMenu.Core.Entity.csproj" />
   </ItemGroup>
 
